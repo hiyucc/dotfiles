@@ -1,0 +1,54 @@
+
+# セットされていない変数を使ったら警告
+set -u
+
+autoload -Uz vcs_info
+setopt prompt_subst
+
+zstyle ':vcs_info:*' formats '(%F{green}%b%f)'
+zstyle ':vcs_info:*' actionformats '%s][* %F{green}%b%f(%F{red}%a%f)'
+
+precmd(){vcs_info}
+
+#PROMPT='[%n@%m] '
+PROMPT='[%F{magenta}%B%n%b%f@%F{cyan}%U%m%u%f] ${vcs_info_msg_0_}# '
+#RPROMPT='[%~]'
+RPROMPT='[%F{green}%~%f]'
+
+# Autocomplete
+autoload -U compinit
+compinit
+
+##alias 
+alias ls='ls --color=auto'
+alias ll='ls -la --color=auto'
+alias grep='grep --color=auto'
+
+### change directory
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ....='cd ../../../'
+
+alias start_agent='eval `ssh-agent`; ssh-add ~/.ssh/id_dsa'
+alias end_agent='ssh-agent -k'
+
+# ssh-agent
+function ssha {
+	end_agent
+	eval `ssh-agent`
+	ssh-add
+}
+
+#git用
+alias 'gitst=git status'
+alias 'gitb=git branch'
+alias 'gitch=git checkout'
+alias 'gitup=git pull upstream master'
+alias 'gitd=git diff'
+
+# ${fg[...]} や $reset_color をロード
+autoload -U colors && colors
+
+#lsの色変更
+export LS_COLORS='di=01;33'
+
