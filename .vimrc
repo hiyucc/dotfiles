@@ -1,6 +1,10 @@
 
 syntax on "コードに色つけ
 
+" システムのvimrcとか読み込んでいる場合に備えて
+filetype off
+filetype plugin indent off "filetype plugin による indent 等の設定
+
 " {{{ 表示
 set number "行番号表示
 set ruler "カーソルの位置を表示する表示
@@ -18,6 +22,7 @@ set foldmethod=marker "折り畳みできるように。
 set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set laststatus=2 "ステータスラインの表示位置
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] " ステータスラインに情報表示
+set ambiwidth=double
 
 " }}}
 
@@ -25,6 +30,7 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%0
 set encoding=utf8 "vim内部での文字コード指定
 set fileencoding=utf8 "file encoding の自動判別対象の指定
 set confirm "保存されてないファイルの終了時に確認
+" filetype plugin indent on "filetype plugin による indent を onに
 
 " }}}
 
@@ -45,7 +51,14 @@ set gdefault "置換時にgオプションを有効にする
 " }}}
 
 " {{{ Vim内 I/O
-set mouse=a "マウスの入力を受け付ける
+"set mouse=a "マウスの入力を受け付ける
+
+
+" コメント挿入後改行時に、コメントアウトになるのを防ぐ。
+augroup auto_comment_off
+	autocmd BufEnter * setlocal formatoptions-=r
+	autocmd BufEnter * setlocal formatoptions-=o
+augroup END
 
 " }}}
 
@@ -74,4 +87,8 @@ if has("syntax")
     augroup END
 endif
 " }}}
+
+
+" filetype 検出をon
+filetype plugin indent on "filetype plugin による indent 等の設定
 
