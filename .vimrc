@@ -9,7 +9,7 @@ filetype plugin indent off "filetype plugin による indent 等の設定
 set number "行番号表示
 set ruler "カーソルの位置を表示する表示
 set tabstop=4 "タブのスペース4つ分
-set expandtab "タブを \t ではなく、半角空白にする
+"set expandtab "タブを \t ではなく、半角空白にする
 set shiftwidth=4 "自動挿入インデントの幅
 set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set paste
