@@ -5,6 +5,47 @@ syntax on "コードに色つけ
 filetype off
 filetype plugin indent off "filetype plugin による indent 等の設定
 
+" {{{ dein.vim
+if v:version > 703
+	" プラグインが実際にインストールされるディレクトリ
+	let s:dein_dir = expand('~/.cache/dein')
+	" dein.vim 本体
+	let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+	" dein.vim がなければ github から落としてくる
+	if &runtimepath !~# '/dein.vim'
+		if !isdirectory(s:dein_repo_dir)
+			execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+			endif
+		  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+	endif
+
+	" 設定開始
+	if dein#load_state(s:dein_dir)
+		call dein#begin(s:dein_dir)
+
+		" プラグインリストを収めた TOML ファイル
+		" 予め TOML ファイル（後述）を用意しておく
+		let g:rc_dir    = expand('~/.vim/rc')
+		let s:toml      = g:rc_dir . '/dein.toml'
+		let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
+
+		" TOML を読み込み、キャッシュしておく
+		call dein#load_toml(s:toml,      {'lazy': 0})
+		call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+		" 設定終了
+		call dein#end()
+		call dein#save_state()
+	endif
+
+	" もし、未インストールものものがあったらインストール
+	if dein#check_install()
+		call dein#install()
+	endif
+endif
+" }}}
+
 " {{{ 表示
 set number "行番号表示
 set ruler "カーソルの位置を表示する表示
@@ -48,6 +89,12 @@ set ignorecase "検索に大文字小文字の区別をつけない
 set hlsearch "検索文字列をハイライト
 set gdefault "置換時にgオプションを有効にする
 
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermbg=250 guibg=#cccccc↲
+autocmd ColorScheme * highlight LineNr ctermfg=231 guifg=#cccccc↲
+autocmd ColorScheme * highlight Comment ctermfg=9 guifg=#cccc66↲
+
 " }}}
 
 " {{{ Vim内 I/O
@@ -62,8 +109,6 @@ augroup END
 
 " }}}
 
-
-
 " {{{ 全角スペース・行末のスペース・タブの可視化
 if has("syntax")
     syntax on
@@ -73,11 +118,11 @@ if has("syntax")
  
     function! ActivateInvisibleIndicator()
         " 下の行の"　"は全角スペース
-        syntax match InvisibleJISX0208Space "　" display containedin=ALL
+        syntax match InvisibleJISX0208Space '　' display containedin=ALL
         highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
-        "syntax match InvisibleTrailedSpace "[ \t]\+$" display containedin=ALL
+        "syntax match InvisibleTrailedSpace '[ \t]\+$' display containedin=ALL
         "highlight InvisibleTrailedSpace term=underline ctermbg=Red guibg=NONE gui=undercurl guisp=darkorange
-        "syntax match InvisibleTab "\t" display containedin=ALL
+        "syntax match InvisibleTab '\t' display containedin=ALL
         "highlight InvisibleTab term=underline ctermbg=white gui=undercurl guisp=darkslategray
     endfunction
  
@@ -87,7 +132,6 @@ if has("syntax")
     augroup END
 endif
 " }}}
-
 
 " filetype 検出をon
 filetype plugin indent on "filetype plugin による indent 等の設定
