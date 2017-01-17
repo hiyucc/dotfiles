@@ -1,5 +1,5 @@
 
-files=(".zsh_profile" ".zshrc" ".bash_profile" ".tmux.conf" ".vimrc")
+files=(".zsh_profile" ".zshrc" ".bash_profile" ".tmux.conf" ".vimrc" ".vim")
 
 for i in "${files[@]}"
 do

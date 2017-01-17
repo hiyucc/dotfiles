@@ -1,6 +1,9 @@
 
 syntax on "コードに色つけ
 
+set encoding=utf-8
+scriptencoding=utf-8
+
 " システムのvimrcとか読み込んでいる場合に備えて
 filetype off
 filetype plugin indent off "filetype plugin による indent 等の設定
