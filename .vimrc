@@ -1,8 +1,12 @@
 
 syntax on "コードに色つけ
 
+" {{{ encode
 set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 scriptencoding=utf-8
+" }}}
 
 " システムのvimrcとか読み込んでいる場合に備えて
 filetype off
@@ -53,9 +57,9 @@ endif
 set number "行番号表示
 set ruler "カーソルの位置を表示する表示
 set tabstop=4 "タブのスペース4つ分
-"set expandtab "タブを \t ではなく、半角空白にする
 set shiftwidth=4 "自動挿入インデントの幅
-set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+set autoindent
+"set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set paste
 set softtabstop=0 "tabキーを押したときの幅 0はtabstopと同じ
 set cindent "cスタイルのインデントを自動で入れる
@@ -69,6 +73,7 @@ set smartindent "改行時に入力された行の末尾に合わせて次の行
 set laststatus=2 "ステータスラインの表示位置
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] " ステータスラインに情報表示
 set ambiwidth=double "全角文字の幅を2に固定する
+set indentkeys=!^F,o,O,0<Bar>
 
 " }}}
 
@@ -111,6 +116,13 @@ augroup auto_comment_off
 	autocmd BufEnter * setlocal formatoptions-=r
 	autocmd BufEnter * setlocal formatoptions-=o
 augroup END
+
+augroup fileTypeIndent
+	autocmd!
+	autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+	autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	autocmd BufNewFile,BufRead *.coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " }}}
 
