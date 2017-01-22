@@ -32,6 +32,9 @@ alias ....='cd ../../../'
 alias start_agent='eval `ssh-agent`; ssh-add ~/.ssh/id_dsa'
 alias end_agent='ssh-agent -k'
 
+# tmux
+alias tmux="tmux -u"
+
 # ssh-agent
 function ssha {
 	end_agent
