@@ -52,17 +52,17 @@ set ruler "カーソルの位置を表示する表示
 set tabstop=4 "タブのスペース4つ分
 "set expandtab "タブを \t ではなく、半角空白にする
 set shiftwidth=4 "自動挿入インデントの幅
-set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set paste
 set softtabstop=0 "tabキーを押したときの幅 0はtabstopと同じ
-set cindent "cスタイルのインデントを自動で入れる
 set list "不可視文字を表示
 set listchars=tab:»-,eol:↲,extends:»,precedes:«,nbsp:% "不可視文字の表示記号指定
 set showmatch "閉じ括弧に対応する括弧を一瞬表示
 set matchtime=1 "括弧を閉じたときに次の開き括弧が表示される
 set title "編集中のファイル名を表示
+set autoindent
+"set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+"set cindent "cスタイルのインデントを自動で入れる
 set foldmethod=marker "折り畳みできるように。
-set smartindent "改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set laststatus=2 "ステータスラインの表示位置
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] " ステータスラインに情報表示
 set ambiwidth=double "全角文字の幅を2に固定する
@@ -92,6 +92,7 @@ set hlsearch "検索文字列をハイライト
 set gdefault "置換時にgオプションを有効にする
 
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+map <F2> yypki//<SPACE>{{{<SPACE><ESC>jo}<ESC>o//<SPACE>}}}<CR><ESC>
 
 autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermbg=250 guibg=#cccccc↲
 autocmd ColorScheme * highlight LineNr ctermfg=231 guifg=#cccccc↲
@@ -109,6 +110,12 @@ augroup auto_comment_off
 	autocmd BufEnter * setlocal formatoptions-=o
 augroup END
 
+" }}}
+
+" {{{ 外部ファイル読み込み
+if filereadable(expand('~/.vim/indent/common.vim'))
+	source ~/.vim/indent/common.vim
+endif
 " }}}
 
 " {{{ 全角スペース・行末のスペース・タブの可視化
@@ -136,5 +143,7 @@ endif
 " }}}
 
 " filetype 検出をon
-filetype plugin indent on "filetype plugin による indent 等の設定
+"filetype on
+"filetype plugin indent on "filetype plugin による indent 等の設定
+"filetype indent on
 
