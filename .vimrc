@@ -56,6 +56,7 @@ endif
 " {{{ 表示
 set number "行番号表示
 set ruler "カーソルの位置を表示する表示
+set expandtab
 set tabstop=4 "タブのスペース4つ分
 set shiftwidth=4 "自動挿入インデントの幅
 set autoindent
@@ -63,7 +64,8 @@ set autoindent
 set paste
 set softtabstop=0 "tabキーを押したときの幅 0はtabstopと同じ
 set list "不可視文字を表示
-set listchars=tab:»-,eol:↲,extends:»,precedes:«,nbsp:% "不可視文字の表示記号指定
+"set listchars=tab:»-,eol:↲,extends:»,precedes:«,nbsp:% "不可視文字の表示記号指定
+set nolist
 set showmatch "閉じ括弧に対応する括弧を一瞬表示
 set matchtime=1 "括弧を閉じたときに次の開き括弧が表示される
 set title "編集中のファイル名を表示
@@ -77,7 +79,7 @@ set indentkeys=!^F,o,O,0<Bar>
 
 " }}}
 
-" {{{ ファイル自体に対して
+" {{{ ファイルに対して
 set encoding=utf8 "vim内部での文字コード指定
 set fileencoding=utf8 "file encoding の自動判別対象の指定
 set confirm "保存されてないファイルの終了時に確認
@@ -124,6 +126,7 @@ augroup fileTypeIndent
 	autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	autocmd BufNewFile,BufRead *.conf setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 
 " }}}
 
