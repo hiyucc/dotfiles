@@ -1,9 +1,12 @@
 
 # セットされていない変数を使ったら警告
-set -u
+#set -u
 
 autoload -Uz vcs_info
 setopt prompt_subst
+
+zstyle ':vcs_info:*' max-exports 3
+zstyle ':vcs_info:*' enable git svn
 
 zstyle ':vcs_info:*' formats '(%F{green}%b%f)'
 zstyle ':vcs_info:*' actionformats '%s][* %F{green}%b%f(%F{red}%a%f)'
@@ -11,7 +14,7 @@ zstyle ':vcs_info:*' actionformats '%s][* %F{green}%b%f(%F{red}%a%f)'
 precmd(){vcs_info}
 
 #PROMPT='[%n@%m] '
-PROMPT='[%F{magenta}%B%n%b%f@%F{cyan}%U%m%u%f] ${vcs_info_msg_0_}# '
+PROMPT='[%F{magenta}%B%n%b%f@%F{yellow}%U%m%u%f] ${vcs_info_msg_0_:-""}# '
 #RPROMPT='[%~]'
 RPROMPT='[%F{green}%~%f]'
 
@@ -20,9 +23,9 @@ autoload -U compinit
 compinit
 
 ##alias 
-alias ls='ls --color=auto'
-alias ll='ls -la --color=auto'
-alias grep='grep --color=auto'
+#alias ls='ls --color=auto'
+#alias ll='ls -la --color=auto'
+#alias grep='grep --color=auto'
 
 ### change directory
 alias ..='cd ../'
@@ -54,4 +57,18 @@ autoload -U colors && colors
 
 #lsの色変更
 export LS_COLORS='di=01;33'
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+#export WORKON_HOME=$HOME/.virtualenvs
+#source /usr/local/bin/virtualenvwrapper.sh
+
+export PGDATA=/usr/local/var/postgres
+export PYTHONPATH=/usr/local/bin/python3:$PYTHONPATH
+
+export PATH=$HOME/source_compiles/flutter/bin:$PATH
+
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+
+export PATH=$HOME/Library/Android/sdk:$PATH
+export PATH=$HOME/Library/Android/sdk/platform-tools/:$PATH
 
