@@ -106,6 +106,8 @@ set gdefault "置換時にgオプションを有効にする
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 map <F2> yypki//<SPACE>{{{<SPACE><ESC>jo}<ESC>o//<SPACE>}}}<CR><ESC>
 
+set t_Co=256
+colorscheme molokai
 autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermbg=250 guibg=#cccccc↲
 autocmd ColorScheme * highlight LineNr ctermfg=231 guifg=#cccccc↲
 autocmd ColorScheme * highlight Comment ctermfg=9 guifg=#cccc66↲
@@ -130,6 +132,7 @@ augroup fileTypeIndent
 	autocmd BufNewFile,BufRead *.coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.conf setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+augroup END
 
 " }}}
 
