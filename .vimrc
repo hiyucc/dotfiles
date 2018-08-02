@@ -15,7 +15,7 @@ filetype plugin indent off "filetype plugin による indent 等の設定
 " {{{ dein.vim
 if v:version > 703
 	" プラグインが実際にインストールされるディレクトリ
-	let s:dein_dir = expand('~/.cache/dein')
+	let s:dein_dir = expand('~/.vim/dein')
 	" dein.vim 本体
 	let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -24,15 +24,14 @@ if v:version > 703
 		if !isdirectory(s:dein_repo_dir)
 			execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 			endif
-		  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 	endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 
 	" 設定開始
 	if dein#load_state(s:dein_dir)
 		call dein#begin(s:dein_dir)
 
 		" プラグインリストを収めた TOML ファイル
-		" 予め TOML ファイル（後述）を用意しておく
 		let g:rc_dir    = expand('~/.vim/rc')
 		let s:toml      = g:rc_dir . '/dein.toml'
 		let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
@@ -71,6 +70,7 @@ set foldmethod=marker "折り畳みできるように。
 set laststatus=2 "ステータスラインの表示位置
 set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L] " ステータスラインに情報表示
 set ambiwidth=double "全角文字の幅を2に固定する
+set clipboard=unnamed,autoselect
 
 " }}}
 
@@ -102,10 +102,15 @@ set virtualedit=block "文字のないところに移動できるようにする
 set ignorecase "検索に大文字小文字の区別をつけない
 set hlsearch "検索文字列をハイライト
 set gdefault "置換時にgオプションを有効にする
+" }}}
 
+" {{{ maps
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 map <F2> yypki//<SPACE>{{{<SPACE><ESC>jo}<ESC>o//<SPACE>}}}<CR><ESC>
+map <silent><C-e> :NERDTreeToggle<CR>
+" }}}
 
+" {{{ color
 set t_Co=256
 colorscheme molokai
 autocmd ColorScheme * highlight Visual term=reverse cterm=reverse ctermbg=250 guibg=#cccccc↲
