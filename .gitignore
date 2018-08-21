@@ -1,2 +1,4 @@
 .zsh_profile
 .zshrc
+*.swp
+.vim/dein
