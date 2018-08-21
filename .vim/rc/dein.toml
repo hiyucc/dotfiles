@@ -7,3 +7,9 @@ repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'burnettk/vim-angular'
+
+[[plugins]]
+repo = 'othree/yajs'
