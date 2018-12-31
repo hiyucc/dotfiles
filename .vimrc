@@ -4,7 +4,7 @@ syntax on "コードに色つけ
 " {{{ encoding
 set encoding=utf8 "vim内部での文字コード指定
 "set fileencoding=utf8 "file encoding の自動判別対象の指定
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
 set fileformats=unix,dos,mac
 scriptencoding=utf-8
 " }}}
@@ -134,6 +134,7 @@ augroup fileTypeIndent
 	autocmd BufNewFile,BufRead *.coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.conf setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expendtab
 augroup END
 
 " }}}
