@@ -134,20 +134,20 @@ augroup fileTypeIndent
 	autocmd BufNewFile,BufRead *.coffee setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.json setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 	autocmd BufNewFile,BufRead *.conf setlocal tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expendtab
+    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 augroup END
 
 " }}}
 
 " {{{ read outside file
-if filereadable(expand('~/.vim/indent/common.vim'))
-	source ~/.vim/indent/common.vim
-endif
+"if filereadable(expand('~/.vim/indent/common.vim'))
+"	source ~/.vim/indent/common.vim
+"endif
 " }}}
 
 " {{{ 全角スペース・行末のスペース・タブの可視化
 if has("syntax")
-    syntax on
+    "syntax on
  
     " PODバグ対策
     syn sync fromstart
