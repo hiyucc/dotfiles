@@ -26,6 +26,7 @@ compinit
 #alias ls='ls --color=auto'
 #alias ll='ls -la --color=auto'
 #alias grep='grep --color=auto'
+alias ctags="`brew --prefix`/bin/ctags"
 
 ### change directory
 alias ..='cd ../'
@@ -52,6 +53,11 @@ alias 'gitch=git checkout'
 alias 'gitup=git pull upstream master'
 alias 'gitd=git diff'
 
+# docker 系
+alias 'docker-c=docker-compose'
+alias 'dc=docker compose'
+alias 'dcalldown=dc down --rmi all -v --remove-orphans'
+
 # ${fg[...]} や $reset_color をロード
 autoload -U colors && colors
 
@@ -71,7 +77,14 @@ export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 
 export PATH=$HOME/Library/Android/sdk:$PATH
 export PATH=$HOME/Library/Android/sdk/platform-tools/:$PATH
+export PATH=/opt/homebrew/bin:$PATH
 
 export JAVA_HOME=`/usr/libexec/java_home -v 9`
 
 export CLASSPATH=/Users/hideyuki.oka/develop/jinjer/electronic_books/amano_PDF-lib/e-timing\ EVIDENCE\ 3161\ PDF\ Lib-J\ 4p11\ 2/PDF_LIB-J_20191206/apl3161/lib/
+
+export AUTIFY_TOKEN='1QS5jh4N__UmYCU8-Uyp'
+
+export PATH=$PATH:/var/lib/sonar-scanner-5.0.1/bin
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
